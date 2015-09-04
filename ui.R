@@ -2,7 +2,7 @@ library(shiny)
 
 nav_ui <-
     list(windowTitle = "Data Science", id = "nav_main", inverse = TRUE,
-         collapsible = TRUE, tabPanel("Help", h1('The landing page')))
+         collapsible = TRUE, tabPanel("Getting started", includeMarkdown('help.md')))
 
 source("data_ui.R", encoding = "UTF-8", local = TRUE)
 source("univariate_ui.R", encoding = "UTF-8", local = TRUE)

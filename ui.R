@@ -1,15 +1,20 @@
 library(shiny)
 
+nav_ui <-
+    list(windowTitle = "Data Science", id = "nav_main", inverse = TRUE,
+         collapsible = TRUE, tabPanel("Help", h1('The landing page')))
+
+source("data_ui.R", encoding = "UTF-8", local = TRUE)
+source("univariate_ui.R", encoding = "UTF-8", local = TRUE)
+source("multivariate_ui.R", encoding = "UTF-8", local = TRUE)
+source("collinearities_ui.R", encoding = "UTF-8", local = TRUE)
+source("missing_ui.R", encoding = "UTF-8", local = TRUE)
+source("outliers_ui.R", encoding = "UTF-8", local = TRUE)
+source("transformations_ui.R", encoding = "UTF-8", local = TRUE)
+source("logs_ui.R", encoding = "UTF-8", local = TRUE)
+
 shinyUI(
-    navbarPage("Ayata", 
-               tabPanel("Load Data", source("loaddata_ui.R",local=T)$value),
-               tabPanel("Metadata"),
-               tabPanel("Univariate analysis"),
-               tabPanel("Multivariate analysis"),
-               tabPanel("Collinearities"),
-               tabPanel("Missing values"),
-               tabPanel("Outliers"),
-               tabPanel("Transformations"),
-#                tabPanel("Engineering"),
-               tabPanel("Logs")
-))
+    do.call(navbarPage, c("Ayata", nav_ui, data_ui, univariate_ui, multivariate_ui, collinearities_ui, missing_ui, outliers_ui,
+                          transformations_ui, logs_ui
+                          ))
+)

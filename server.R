@@ -2,5 +2,6 @@ library(shiny)
 
 shinyServer(function(input, output) {
     values <- reactiveValues()
-    source("loaddata_server.R", local=T)
+    source("functions.R", local = TRUE)
+    source("data.R", local=T)
 })

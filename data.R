@@ -57,7 +57,7 @@ updateDATA <- observe({
 })
 
 output$contents <- renderDataTable({
-    values$data[1:100,]
+    values$data[1:20,]
 }, options = list(
     pageLength = 10,
     lengthChange=FALSE,
@@ -70,3 +70,32 @@ output$contents <- renderDataTable({
     dom='rt<"pull-left"i><"pull-right"flp><"clear">',
     ordering=FALSE
 ))
+
+output$rowsNCols <- renderUI({
+    text <- ""
+    data <- values$data
+    isolate({
+        if (!is.null(data)) {
+            columns <- ncol(data)
+            rows <- nrow(data) 
+            summ <- paste("<b>Summary</b>")
+            rowsTxt <- paste("# of rows:columns = ",rows,":",columns,sep="")
+            colsTxt <- paste("<pre>",rowsTxt,"</pre>",sep="")
+            text <- paste(summ,colsTxt,sep = "<br/>")
+        }
+        HTML(text)
+    })
+})
+
+output$pie_featureTypes <- renderPlot({
+    data <- values$data
+    classes <- computeFeatureTypes(data)
+    print(classes)
+    slices <- classes$Freq
+    lbls <- classes$classes
+    cat(slices, lbls)
+    if (length(lbls) > 0) {
+        pie(slices, labels = lbls, main="Feature types in data")
+    }
+    
+})

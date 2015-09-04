@@ -14,7 +14,7 @@ source("transformations_ui.R", encoding = "UTF-8", local = TRUE)
 source("logs_ui.R", encoding = "UTF-8", local = TRUE)
 
 shinyUI(
-    do.call(navbarPage, c("Ayata", nav_ui, data_ui, univariate_ui, multivariate_ui, collinearities_ui, missing_ui, outliers_ui,
+    do.call(navbarPage, c("Data Science", nav_ui, data_ui, univariate_ui, multivariate_ui, collinearities_ui, missing_ui, outliers_ui,
                           transformations_ui, logs_ui
                           ))
 )
